@@ -1,10 +1,8 @@
 #pragma once
-
-#include <iostream>
-
+#include "TurnInput.h"
 class IInputGenerator
 {
 public:
-    virtual int Input() = 0;
+    virtual TurnInput GenerateInput(int round) = 0;
     virtual ~IInputGenerator() = default;
 };

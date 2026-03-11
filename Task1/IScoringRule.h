@@ -1,11 +1,8 @@
 #pragma once
-
-#include <iostream>
-
+#include "TurnInput.h"
 class IScoringRule
 {
-    public:
-        //take input playing card nanti, abis itu di passing ke Irewardrule sebagai base score.
-        virtual int ComputeBaseScore(int input) = 0;
-        virtual ~IScoringRule() = default;
+public:
+    virtual int ComputeBaseScore(const TurnInput &input) = 0;
+    virtual ~IScoringRule() = default;
 };
