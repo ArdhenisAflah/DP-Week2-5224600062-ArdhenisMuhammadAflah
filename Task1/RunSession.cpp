@@ -5,7 +5,7 @@ RunSession::RunSession(std::unique_ptr<IInputGenerator> ig, std::unique_ptr<ISco
                        std::unique_ptr<IRewardRule> rr, std::unique_ptr<ShopSystem> ss)
     : inputGen(std::move(ig)), scoringRule(std::move(sr)),
       rewardRule(std::move(rr)), shopSystem(std::move(ss)),
-      currentMoney(12), bonusChips(0), bonusMult(0) {}
+      currentMoney(1), bonusChips(0), bonusMult(0) {}
 
 void RunSession::Start(int totalRounds)
 {
