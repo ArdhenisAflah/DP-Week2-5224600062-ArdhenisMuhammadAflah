@@ -1,3 +1,39 @@
+# Task 1 - Arsytektur Core Loop dan Prinsip SOLID
+
+**Konsep Game:** Balatro Core Loop Architecture Poker Roguelike.
+
+### Step 2 - Identifikasi Invarian (Invariant Identification)
+
+Struktur Invariant adalah fondasi sistem yang mengatur urutan jalannya permainan. Urutan ini bersifat tetap dan tidak boleh berubah agar logika program tetap konsisten.
+
+**Invariant Structure:**
+- `RunSession.h` / `.cpp`
+  - Bertindak sebagai orkestrator utama yang memanggil fase: Input -> Scoring -> Reward -> Shop.
+- `TurnInput.h`
+  - Struktur data standar yang menghubungkan hasil dari Generator menuju Scoring Rule.
+
+Jika urutan di dalam `RunSession` diubah (misalnya `ComputeReward` dijalankan sebelum `ComputeBaseScore`), maka pemain bisa mendapatkan hadiah tanpa ada perhitungan skor yang valid.
+
+---
+
+### Step 3 - Elemen Mutable
+
+Elements Mutable adalah komponen yang dapat diganti atau dimodifikasi perilakunya tanpa mengubah struktur utama permainan. Hal ini dicapai melalui penggunaan *Interface* dan *Dependency Injection*.
+
+**Mutable Elements:**
+- `IInputGenerator`
+  - Dapat berupa `StandardInputGenerator` (pintar) atau `RandomInputGenerator` (acak).
+- `IChooseHand`
+  - Strategi pemilihan kartu, seperti `OptimalHandChooser` atau `RandomHandChooser`.
+- `IScoringRule`
+  - Aturan perhitungan skor dasar, seperti `StandardScoringRule`.
+- `IRewardRule`
+  - Aturan pemberian uang, seperti `StandardRewardRule` atau `ModifiedRewardRule`.
+- `ShopSystem`
+  - Logika transaksi dan jenis item yang dijual di toko.
+
+---
+
 ## Refleksi Design Pattern
 
 **1. Inti Sistem yang Tetap (Invariant Structure)**
